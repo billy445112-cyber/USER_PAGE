@@ -1,0 +1,25 @@
+:root {
+    /* 背景 */
+        /* Navigation */
+        --background_01: rgba(255, 255, 255, 0.95);
+
+        /* Hero Section */
+        --background_02: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3));
+
+        /* Skills Sections */
+        --background_03:#f8f8f8;
+
+
+
+    /* 文字 */
+        /* Navigation */
+        --wordcolor_01: #333;
+        --wordcolor_02: #666;
+        /* Hero Section */
+        --wordcolor_03: white;
+        /* sections */
+        --wordcolor_04: #999;
+
+
+
+}

@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人履歷 | 陳秉霖</title>
+    <link rel="stylesheet" href="css/mycss02.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/Animations.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
+            line-height: 1.6;
+            color: var(--wordcolor_01);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--background_01);
+            padding: 20px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--wordcolor_01);
+            font-weight: 500;
+            transition: color 0.3s;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: var(--wordcolor_02);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;    
+            background-color: var(--background_02);
+            background: url(images/computer.jpg) center/cover;
+            display: flex;
+            /* 垂直對齊 */
+            align-items: center;
+            /* 水平對齊 */
+            justify-content: center;
+            text-align: center;
+            color: var(--wordcolor_03);
+            position: relative;
+        }
+
+        .hero-content {
+            /* 透明度 */
+            opacity: 0;
+            /* 動態滑入方向 */
+            transform: translateY(30px);
+            /* 使用動畫: fadeInUP:動畫名稱 持續時間 結束後停在最後的狀態 延遲 0.3 秒後才開始 */
+            animation: fadeInUp 1s forwards 0.3s;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .hero h2 {
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        .hero-image {
+            max-width: 200px;
+            width: 90%;
+            border-radius: 500px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            /* ease-out:速度曲線 ; backwards:延遲期間套用第一格樣式 */
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 40px;
+
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 20px;
+            letter-spacing: 3px;
+            color: var(--wordcolor_04);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        /* Skills Section */
+        .skills {
+            background-color: var(--background_03);
+        }    
+
+        h2 {
+            font-size: 48px;
+            margin-bottom: 60px;
+            font-weight: 300;
+        }
+
+        .skills-grid {
+            /* 呈現方式採grid佈局 */
+            display: grid;
+            /*  2個欄位，各佔 50% */
+            grid-template-columns: repeat(2, 1fr);
+            /* 間距 */
+            gap: 40px;
+        }
+
+        .skill-item {
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideInLeft 0.8s forwards;
+        }
+
+        .skill-item:nth-child(1) { animation-delay: 0.1s; }
+        .skill-item:nth-child(2) { animation-delay: 0.2s; }
+        .skill-item:nth-child(3) { animation-delay: 0.3s; }
+        .skill-item:nth-child(4) { animation-delay: 0.4s; }
+        .skill-item:nth-child(5) { animation-delay: 0.5s; }
+        .skill-item:nth-child(6) { animation-delay: 0.6s; }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .skill-bar {
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #333, #666);
+            border-radius: 3px;
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+
+        .skill-item.visible .skill-progress {
+            width: var(--progress);
+        }
+
+        /* About Section */
+        .about {
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .about-text h3 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 2px;
+            font-size: 14px;
+            transition: all 0.3s;
+            border: 2px solid #333;
+        }
+
+        .btn:hover {
+            background: white;
+            color: #333;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            background: #fafafa;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 1;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            /* 使用flexbox布局 */
+            display: flex;
+            /* 垂直置中 */
+            align-items: center;
+            /* 水平置中 */
+            justify-content: center;
+            /* 初始狀態完全透明 */
+            opacity: 0;
+            /* 透明度變化時有0.4秒的淡入淡出效果 */
+            transition: opacity 0.4s;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        /* .portfolio-overlay h4 {
+            color: white;
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        } */
+        .portfolio-overlay a {
+            color: white;
+            /* 字體大小 */
+            font-size: 24px;
+            /* 字體粗細 */
+            font-weight: 300;
+            /* 字母間距2像素 */
+            letter-spacing: 2px;
+            /* 移除文字裝飾(如底線) */
+            text-decoration: none;
+        }
+
+
+        /* Experience Section */
+        .experience {
+            background: white;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e0e0e0;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .timeline-item.visible {
+            animation: slideInLeft 0.8s forwards;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -68px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: #333;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 2px #e0e0e0;
+        }
+
+        .timeline-year {
+            font-size: 14px;
+            color: #999;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .timeline-company {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .timeline-desc {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1600') center/cover;
+            color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info h3 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .contact-info p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .contact-details {
+            margin-bottom: 40px;
+        }
+
+        .contact-details a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .contact-details a:hover {
+            opacity: 0.7;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border: 2px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: white;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        input, textarea {
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            font-family: inherit;
+            font-size: 16px;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        .btn-submit {
+            padding: 15px 40px;
+            background: white;
+            color: #333;
+            border: 2px solid white;
+            cursor: pointer;
+            font-size: 14px;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            align-self: flex-start;
+        }
+
+        .btn-submit:hover {
+            background: transparent;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+
+        /* Animations :動畫定義 */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero h2 {
+                font-size: 20px;
+            }
+
+            .skills-grid,
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 20px;
+            }
+
+            h2 {
+                font-size: 32px;
+            }
+        }
+
+        /* Scroll animations trigger */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Billy</div>
+            <ul>
+                <li><a href="#home">首頁</a></li>
+                <li><a href="#skills">技能</a></li>
+                <li><a href="#about">關於我</a></li>
+                <li><a href="#portfolio">作品集</a></li>
+                <li><a href="#experience">實務經驗</a></li>
+                <li><a href="#contact">與我聯繫</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>我是 陳秉霖</h1>
+            <h2>全端工程師 & AI應用工程師</h2>
+            <img src="images/usepage.avif" alt="個人大頭貼" class="hero-image">
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <div class="section-title">01 專業</div>
+            <h2>我的專業水平</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>HTML & CSS</span>
+                        <span>30%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress: 30%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>LARAVEL</span>
+                        <span>10%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress: 10%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>GitHub</span>
+                        <span>1%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress: 1%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>PYTHON</span>
+                        <span>50%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress: 50%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>PHP & PHPMYADMIN</span>
+                        <span>20%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress: 20%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>UI/UX設計</span>
+                        <span>20%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress: 20%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800" alt="About" class="about-image animate-on-scroll">
+                <div class="about-text animate-on-scroll">
+                    <div class="section-title">能力</div>
+                    <h3>關於我</h3>
+                    <p>具備前後端程式設計與創意設計實務經驗，擅長設計自動化系統與開發高效能網頁應用程式。熱衷於將複雜的技術問題轉化為簡潔優雅的解決方案。</p>
+                    <p>擁有團隊協作經驗，善於溝通並能夠快速適應新技術。致力於創造具有優秀使用者體驗的數位產品。</p>
+                    <a href="#" class="btn">下載履歷</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-title">02 作品集</div>
+            <h2>我的最新作品</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="images/computer-1.jpg" alt="Project 1">
+                    <div class="portfolio-overlay">
+                        <a href="20260203-EX01.html" target="_blank">首頁</a>  
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/computer-2.jpg" alt="Project 2">
+                    <div class="portfolio-overlay">
+                        <a href="20260203-EX02.html" target="_blank">Boostrap網頁</a>                               
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/computer-3.jpg" alt="Project 3">
+                    <div class="portfolio-overlay">
+                        <a href="" target="_blank">訂餐管理平台</a>           
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/computer-4.jpg" alt="Project 4">
+                    <div class="portfolio-overlay">
+                        <a href="../../project_folder/20260214_main.html" target="_blank">電商購物網站</a>     
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/computer-5.jpg" alt="Project 5">
+                    <div class="portfolio-overlay">
+                        <a href="20260205-2-table-youbike.html" target="_blank">youbike出借資料表</a> 
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/computer-6.jpg" alt="Project 6">
+                    <div class="portfolio-overlay">
+                        <a href="20260212-EX01.html" target="_blank">地方美食地圖</a> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <div class="section-title">03 經歷</div>
+            <h2>實務經驗</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2026.04 - 現在</div>
+                    <div class="timeline-title">全端工程師</div>
+                    <div class="timeline-company">軟體工程師實務</div>
+                    <div class="timeline-desc">負責大型網頁應用程式的架構設計與開發，領導團隊進行敏捷開發，並優化系統效能提升30%以上。專注於使用React、Node.js等現代化技術棧開發高品質的應用程式。</div>
+                </div>         
+                <div class="timeline-item">
+                    <div class="timeline-year">2026.01 - 2026.04</div>
+                    <div class="timeline-title">後端工程師實習</div>
+                    <div class="timeline-company">軟體工程師實務</div>
+                    <div class="timeline-desc">負責大型網頁應用程式的架構設計與開發，領導團隊進行敏捷開發，並優化系統效能提升30%以上。專注於使用React、Node.js等現代化技術棧開發高品質的應用程式。</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2026.01 - 2026.04</div>
+                    <div class="timeline-title">前端工程師實習</div>
+                    <div class="timeline-company">數位設計實務</div>
+                    <div class="timeline-desc">參與多個專案的前端開發工作，與團隊成員緊密合作打造優秀的使用者介面。熟練運用Vue.js、React等框架，並實作響應式設計確保跨平台相容性。</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2026.01 - 2026.03</div>
+                    <div class="timeline-title">UI/UX 設計實習</div>
+                    <div class="timeline-company">網路行銷實務</div>
+                    <div class="timeline-desc">開發網站的介面設計，進行使用者研究與測試。</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2026.01 - 2026.02</div>
+                    <div class="timeline-title">網頁開發實務</div>
+                    <div class="timeline-company">軟體開發實務</div>
+                    <div class="timeline-desc">協助開發訂餐管理平台，學習HTML、CSS、JavaScript等基礎技術，並參與團隊的程式碼審查與技術討論。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">與我聯絡</div>
+            <div class="contact-content">
+                <div class="contact-info animate-on-scroll">
+                    <h3>讓我們一起創造些什麼吧!!</h3>
+                    <p>有專案想法?想要合作?或只是想打聲招呼?</p>
+                    <div class="contact-details">
+                        <p>Email: <a href="mail">billy445112@gamil.com</a></p>
+                        <p>電話: 0939-583-369</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Line">Line</a>
+                        <a href="#" aria-label="GitHub">git</a>
+                        <a href="#" aria-label="Twitter">tw</a>
+                        <a href="#" aria-label="Facebook">fb</a>
+                    </div>
+                </div>
+                <form class="animate-on-scroll">
+                    <input type="text" placeholder="姓名 *" required>
+                    <input type="email" placeholder="Email *" required>
+                    <input type="tel" placeholder="電話">
+                    <textarea placeholder="訊息 *" required></textarea>
+                    <button type="submit" class="btn-submit">送出</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 陳秉霖.版權所有</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.animate-on-scroll, .skill-item, .timeline-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('感謝您的訊息！我會盡快回覆您。');
+            e.target.reset();
+        });
+
+        // Add active state to nav on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

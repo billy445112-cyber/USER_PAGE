@@ -1,0 +1,254 @@
+/* 導入文字字體 */
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap');
+/* 使用文字字體(Noto Serif TC是專有代號不用背) */
+body{
+    font-family: "Zen Maru Gothic", sans-serif;
+}
+/* 配色 */
+:root {
+    /* 建議適用於背景色或大面積使用 */
+    --mycolor01: #E8F4F8;
+    /* 建議適用於次要元素、按鈕、卡片 */
+    --mycolor02: #B3C8CF;
+    /* 建議適用於文字內容、圖標 */
+    --mycolor03: #7A8B99;
+    /* 建議適用於標題、強調元素 */
+    --mycolor04: #4A5568;
+    --mycolor05: #2F4538;
+    /* 主要色 */
+    --kebuke-brown: #8B4513;
+    --kebuke-milk-tea: #D4A574;
+    --kebuke-ivory: #F5F5DC;
+    --kebuke-navy: #1B4D7C;
+    /* 輔助色 */
+    --kebuke-light-tea: #E8D5C4;
+    --kebuke-camel: #C19A6B;
+    --kebuke-blue: #4A7BA7;
+    --kebuke-dark: #2C2C2C;
+    /* 漸層 */
+    --kebuke-gradient01: linear-gradient(to right, #8B4513 0%, #D4A574 100%);
+    --kebuke-gradient02: linear-gradient(circle, #1B4D7C 0.3, #4A7BA7 0.6);
+    /* 背景色 */
+    --background-01:#3d4f5c;
+    --background-01:#3e4f5d;
+    /* logo色 */
+    --logo-01:#00ff41;
+    --logo-02:#0dff50;
+    --logo-03:#00d639;
+    --logo-04:#00ff41;
+
+}
+
+/* 文字相關 */
+.fw-100{
+    font-weight: 100;
+}
+.fw-200{
+    font-weight: 200;
+}
+.fw-300{
+    font-weight: 300;
+}
+.fw-400{
+    font-weight: 400;
+}
+.fw-500{
+    font-weight: 500;
+}
+.fw-600{
+    font-weight: 600;
+}
+.fw-700{
+    font-weight: 700;
+}
+.fw-800{
+    font-weight: 800;
+}
+.fw-900{
+    font-weight: 900;
+}
+
+.title-01{
+    font-size: 50px;
+    font-weight: 900;
+    color: var(--kebuke-brown);
+    text-shadow: 
+        2px 5px var(--kebuke-dark),
+        20px 4px 8px rgba(0, 0, 0, 0.6);
+    letter-spacing: 3px;         
+}
+.title-02{
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--kebuke-navy);
+}
+.title-03{
+    font-size: 40px;
+    font-weight: 900;
+    color: var(--mycolor05);
+}
+.title-04 {
+    font-size: 50px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #d4a574 0%, #8b5a3c 50%, #d4a574 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 
+        1px 1px 0 rgba(139, 90, 60, 0.3),
+        2px 2px 0 rgba(139, 90, 60, 0.3),
+        3px 3px 0 rgba(139, 90, 60, 0.3),
+        4px 4px 0 rgba(139, 90, 60, 0.3),
+        5px 5px 15px rgba(212, 165, 116, 0.8),
+        8px 8px 25px rgba(0, 0, 0, 0.5);
+    letter-spacing: 3px;
+    filter: drop-shadow(0 0 20px rgba(212, 165, 116, 0.6));
+}
+.title-06 {
+    font-size: 50px;
+    font-weight: 900;
+    background: linear-gradient(180deg, 
+        #f4e4c1 0%, 
+        #d4a574 30%, 
+        #8b5a3c 50%, 
+        #d4a574 70%, 
+        #f4e4c1 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 
+        2px 2px 0 rgba(60, 40, 20, 0.4),
+        4px 4px 0 rgba(60, 40, 20, 0.3),
+        6px 6px 0 rgba(60, 40, 20, 0.2),
+        8px 8px 20px rgba(0, 0, 0, 0.6),
+        12px 12px 30px rgba(0, 0, 0, 0.4);
+    letter-spacing: 3px;
+    position: relative;
+}
+
+
+/* roller .roller-l .roller-r .roller-t .roller-b */
+    .roller{
+        position: relative;
+        overflow: hidden;
+    }
+
+    .roller .roller_box{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, rgba(228, 205, 186, 0.3), rgba(214,107,20,0.6));
+        left: -100%;
+        display: flex;
+        /* 垂直置中 */
+        align-items: center;
+        /* 水平置中 */
+        justify-content: center;
+        /* 若想讓button慢速離開需放在此處 */
+        transition: left 0.5s;
+    }
+    /* 若想讓button瞬間離開，transition: left 1s;需放在此處 */
+    .roller:hover .roller_box{
+        left: 0;
+        
+    }
+    /* ========================================= */
+
+.roller-l{
+    position: relative;
+    overflow: hidden; /* 隱藏超出範圍的內容，確保動畫效果不會溢出 */
+    border-radius: 12px; /* 圓角設計，柔和卡片邊緣 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 基礎陰影，增加卡片浮起感 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* 平滑過渡效果 */
+    cursor: pointer; /* 滑鼠指標變成手指，提示可互動 */
+}
+
+.roller-l:hover{
+    transform: translateY(-5px); /* hover 時向上移動 5px，營造浮起效果 */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* hover 時陰影加深加大，增強立體感 */
+}
+
+.roller-l .roller-l_box{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* 旅遊風格漸層：從溫暖的金黃色漸變到活力橘紅色 */
+    background: linear-gradient(135deg, rgba(255, 183, 77, 0.85) 0%, rgba(255, 138, 101, 0.9) 50%, rgba(214, 107, 20, 0.95) 100%);
+    left: -100%; /* 初始位置在左側外面，準備滑入 */
+    display: flex;
+    /* 垂直置中 */
+    align-items: center;
+    /* 水平置中 */
+    justify-content: center;
+    backdrop-filter: blur(3px); /* 毛玻璃效果，增加質感層次 */
+    /* cubic-bezier 彈性曲線：創造回彈效果，讓動畫更生動 */
+    transition: left 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.roller-l:hover .roller-l_box{
+    left: 0; /* hover 時滑入到正常位置 */
+    /* 使用相同的彈性曲線確保動畫一致性 */
+    transition: left 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* 偽元素：創造動態光暈效果 */
+.roller-l .roller-l_box::before{
+    content: ''; /* 必須設定 content 才能顯示偽元素 */
+    position: absolute;
+    top: -50%; /* 從中心點向外擴展 */
+    left: -50%;
+    width: 200%; /* 尺寸設為兩倍，確保覆蓋整個區域 */
+    height: 200%;
+    /* 徑向漸層：從中心白色光暈向外透明 */
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    animation: shimmer 3s infinite; /* 持續旋轉動畫，3秒一圈無限循環 */
+}
+
+/* 光暈旋轉動畫：營造動態光影效果 */
+@keyframes shimmer {
+    0% { transform: translate(-50%, -50%) rotate(0deg); } /* 起始：居中且角度為 0 */
+    100% { transform: translate(-50%, -50%) rotate(360deg); } /* 結束：旋轉一圈 */
+}
+    /* ====================r===================== */
+    .roller-r{
+        position: relative;
+        overflow: hidden;
+    }
+    .roller-r .roller-r_box{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, rgba(228, 205, 186, 0.3), rgba(214,107,20,0.6));
+        right: -100%;
+        display: flex;
+        /* 垂直置中 */
+        align-items: center;
+        /* 水平置中 */
+        justify-content: center;
+        transition: right 0.5s;
+    }
+        .roller-r:hover .roller-r_box{
+        right: 0;
+        
+    }
+    /* ====================t===================== */
+    .roller-t{
+        position: relative;
+        overflow: hidden;
+    }
+    .roller-t .roller-t_box{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, rgba(228, 205, 186, 0.3), rgba(214,107,20,0.6));
+        top: -100%;
+        display: flex;
+        /* 垂直置中 */
+        align-items: center;
+        /* 水平置中 */
+        justify-content: center;
+    }
+        .roller-t:hover .roller-t_box{
+        top: 0;
+        transition: top 0.5s;
+    }

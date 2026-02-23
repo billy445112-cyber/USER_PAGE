@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WOOJI - 運動生活品牌</title>
+    <link rel="stylesheet" href="css/Boostrap.css">
+    <link rel="stylesheet" href="css/background.css">
+    <link rel="stylesheet" href="css/Top_Banner.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/hero_carousel.css">
+    <link rel="stylesheet" href="css/animation.css">
+    <link rel="stylesheet" href="css/Featured_Section.css">
+    <link rel="stylesheet" href="css/product_grid.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <style>
+        /* Top Banner */
+        .top-banner {
+            background: var(--gray-100);
+            padding: 8px 0;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: var(--primary-white);
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        /* Hero Carousel */
+        .hero-carousel {
+            position: relative;
+            height: 80vh;
+            overflow: hidden;
+        }
+        /* Featured Section */
+        .featured-section {
+            padding: 70px 48px;
+            max-width: 1920px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 48px;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+        /* Product Grid */
+        .product-section {
+            padding: 10px 48px;
+            max-width: 1920px;
+            margin: 0 auto;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-black);
+            color: var(--primary-white);
+            padding: 80px 48px 40px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Top Banner -->
+     <div class="top-banner text-center">
+        限時優惠：全館運動鞋款最高享 7 折優惠 | 免費配送，訂單滿 NT$2,000 以上
+     </div>
+     <!-- Header -->
+    <header>
+        <nav>
+            <!-- logo -->
+            <a href="#" class="logo">WOOJI</a>
+            <ul class="nav-links">
+                <li><a href="#sale">限時優惠</a></li>
+                <li><a href="#new">新品發售</a></li>
+                <li><a href="#men">男款</a></li>
+                <li><a href="#women">女款</a></li>
+                <li><a href="#kids">兒童</a></li>                
+            </ul>
+            <!-- Nav-Icons -->
+            <div class="nav-icons">
+                <!-- Search-Box -->
+                <div class="search-box">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    <input type="text" placeholder="搜尋">
+                </div>
+                <!-- 收藏/願望清單按鈕 -->
+                <button class="icon-btn">
+                    <!-- 愛心 SVG 圖示 -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                </button>
+                <!-- 購物車按鈕 -->
+                <button class="icon-btn">
+                    <!-- 購物車 SVG 圖示 -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <!-- 左輪 -->
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <!--右輪 -->
+                        <circle cx="20" cy="21" r="1"></circle>  
+                        <!-- 購物車主體 -->
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                </button>
+
+                <!-- Login Button / User Avatar -->
+                <button class="icon-btn" id="loginBtn" style="display: flex;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </button>
+                <div class="user-menu" id="userMenu" style="display: none;">
+                    <div class="user-avatar" id="userAvatar">A</div>
+                    <div class="user-menu-dropdown" id="userDropdown">
+                        <div class="user-menu-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            <span>我的帳戶</span>
+                        </div>
+                        <div class="user-menu-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="8.5" cy="7" r="4"></circle>
+                                <polyline points="17 11 19 13 23 9"></polyline>
+                            </svg>
+                            <span>會員權益</span>
+                        </div>
+                        <div class="user-menu-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                            </svg>
+                            <span>訂單記錄</span>
+                        </div>
+                        <div class="user-menu-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                            <span>我的收藏</span>
+                        </div>
+                        <div class="user-menu-divider"></div>
+                        <div class="user-menu-item" id="logoutBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                <polyline points="16 17 21 12 16 7"></polyline>
+                                <line x1="21" y1="12" x2="9" y2="12"></line>
+                            </svg>
+                            <span>登出</span>
+                        </div>
+                    </div>
+                </div>                                                
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Carousel -->
+     <section class="hero-carousel" >
+        <div class="carousel-slide active" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(image/shoes_01.jpg) center/cover;">
+            <div class="slide-content">
+                <h1>征服極限</h1>
+                <p>全新 WOOJI SPORT系列 - 為極致表現而生</p>
+                <a href="#" class="cta-btn">立即選購</a>
+            </div>
+        </div>
+        <div class="carousel-slide" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(image/shoes_02.jpg) center/cover;">
+            <div class="slide-content">
+                <h1>跑出自我</h1>
+                <p>頂級緩震科技 - 每一步都充滿能量</p>
+                <a href="#" class="cta-btn">探索系列</a>
+            </div>
+        </div>
+        <div class="carousel-slide" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(image/shoes_03.jpg) center/cover;">
+            <div class="slide-content">
+                <h1>無懼挑戰</h1>
+                <p>專業訓練裝備 - 打造完美體態</p>
+                <a href="#" class="cta-btn">開始訓練</a>
+            </div>
+        </div>
+        <div class="carousel-dots">
+            <span class="dot active" data-slide="0"></span>
+            <span class="dot" data-slide="1"></span>
+            <span class="dot" data-slide="2"></span>
+        </div>                
+     </section>
+
+    <!-- Featured Section -->
+    <section class="featured-section">
+        <h2 class="section-title fade-in">精選推薦</h2>
+        <div class="featured-grid">
+            <div class="featured-card">
+                <img src="image/shoes_05.jpg" alt="跑步">
+                <div class="card-overlay">
+                    <h3>跑步系列</h3>
+                    <p>專業跑鞋，突破極限</p>
+                </div>
+            </div>
+            <div class="featured-card">
+                <img src="image/basketball_01.jpg" alt="籃球">
+                <div class="card-overlay">
+                    <h3>籃球系列</h3>
+                    <p>掌控場上，無所畏懼</p>
+                </div>
+            </div> 
+            <div class="featured-card">
+                <img src="image/training_01.jpg" alt="訓練">
+                <div class="card-overlay">
+                    <h3>訓練系列</h3>
+                    <p>全方位訓練裝備</p>
+                </div>
+            </div>                       
+        </div>
+    </section> 
+
+    <!-- Product Grid -->
+    <section class="product-section" id="products">
+        <h2 class="section-title">熱銷商品</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="image/shoes_01.jpg" alt="Product" class="product-image">
+                <span class="product-badge">新品</span>
+            
+                <div class="product-info">
+                    <div class="product-category">跑步</div>
+                    <h3 class="product-name">APEX ULTRA BOOST</h3>
+                    <p class="product-description">男子跑步鞋</p>
+                    <div class="product-price">NT$ 5,280</div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <img src="image/shoes_02.jpg" alt="Product" class="product-image">
+                <span class="product-badge">熱銷</span>            
+                <div class="product-info">
+                    <div class="product-category">籃球</div>
+                    <h3 class="product-name">APEX COURT MAX</h3>
+                    <p class="product-description">男子籃球鞋</p>
+                    <div class="product-price">NT$ 4,680</div>
+                </div>
+            </div> 
+
+            <div class="product-card">
+                <img src="image/shoes_03.jpg" alt="Product" class="product-image">
+                <span class="product-badge">熱銷</span>            
+                <div class="product-info">
+                    <div class="product-category">運動生活</div>
+                    <h3 class="product-name">APEX RETRO CLASSIC</h3>
+                    <p class="product-description">女子訓練鞋</p>
+                    <div class="product-price">NT$ 3,980</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="image/new01.jpg" alt="Product" class="product-image">
+                <span class="product-badge">7折</span>            
+                <div class="product-info">
+                    <div class="product-category">訓練</div>
+                    <h3 class="product-name">APEX TRAINING PRO</h3>
+                    <p class="product-description">男子訓練鞋</p>
+                    <div class="product-price">NT$ 3,280</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="image/new02.jpg" alt="Product" class="product-image">
+                <span class="product-badge">7折</span>            
+                <div class="product-info">
+                    <div class="product-category">足球</div>
+                    <h3 class="product-name">APEX VELOCITY</h3>
+                    <p class="product-description">足球鞋</p>
+                    <div class="product-price">NT$ 4,280</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="image/new03.jpg" alt="Product" class="product-image">
+                <span class="product-badge">新品</span>            
+                <div class="product-info">
+                    <div class="product-category">跑步</div>
+                    <h3 class="product-name">APEX SPEEDSTER</h3>
+                    <p class="product-description">女子跑步鞋</p>
+                    <div class="product-price">NT$ 4,880</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="image/new04.jpg" alt="Product" class="product-image">
+                <span class="product-badge">運動生活</span>            
+                <div class="product-info">
+                    <div class="product-category">運動生活</div>
+                    <h3 class="product-name">APEX URBAN STYLE</h3>
+                    <p class="product-description">男子休閒鞋</p>
+                    <div class="product-price">NT$ 3,580</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="image/new05.jpg" alt="Product" class="product-image">
+                <span class="product-badge">限量</span>            
+                <div class="product-info">
+                    <div class="product-category">訓練</div>
+                    <h3 class="product-name">APEX FLEX ELITE</h3>
+                    <p class="product-description">訓練鞋</p>
+                    <div class="product-price">NT$ 5,680</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>資源</h4>
+                <ul>
+                    <li><a href="#">加入會員</a></li>
+                    <li><a href="#">尋找門市</a></li>
+                    <li><a href="#">成為會員</a></li>
+                    <li><a href="#">學生優惠</a></li>
+                    <li><a href="#">意見回饋</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>協助</h4>
+                <ul>
+                    <li><a href="#">訂單狀態</a></li>
+                    <li><a href="#">配送資訊</a></li>
+                    <li><a href="#">退貨政策</a></li>
+                    <li><a href="#">付款方式</a></li>
+                    <li><a href="#">聯絡我們</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>公司</h4>
+                <ul>
+                    <li><a href="#">關於 APEX</a></li>
+                    <li><a href="#">最新消息</a></li>
+                    <li><a href="#">職涯發展</a></li>
+                    <li><a href="#">投資者</a></li>
+                    <li><a href="#">永續發展</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>關注我們</h4>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 APEX, Inc. 版權所有 | 隱私權政策 | 使用條款</p>
+        </div>
+    </footer>
+
+
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

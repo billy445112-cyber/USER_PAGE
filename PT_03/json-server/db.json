@@ -1,0 +1,40 @@
+{
+  "orders": [
+    {
+      "id": "1",
+      "username": "陳XX",
+      "productName": "珍珠奶茶",
+      "ice": "全冰",
+      "toppings": ["粉圓", "QQ"],
+      "quantity": 2,
+      "unnitPrice": 45,
+      "toppingPrice": 20,
+      "note": "半糖",
+      "createdAt": "2026-02-05 10:30"
+    },
+    {
+      "id": "2",
+      "username": "林XX",
+      "productName": "珍珠奶茶",
+      "ice": "少冰",
+      "toppings": ["粉圓", "QQ"],
+      "quantity": 2,
+      "unnitPrice": 45,
+      "toppingPrice": 20,
+      "note": "半糖",
+      "createdAt": "2026-02-05 10:30"
+    },
+    {
+      "id": "3",
+      "username": "李XX",
+      "productName": "珍珠紅茶",
+      "ice": "全冰",
+      "toppings": ["粉圓"],
+      "quantity": 2,
+      "unnitPrice": 45,
+      "toppingPrice": 20,
+      "note": "全糖",
+      "createdAt": "2026-02-05 10:30"
+    }
+  ]
+}

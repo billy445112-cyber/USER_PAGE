@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>烏吉茶飲 Guiji</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Serif TC', serif;
+      background: #f5f0e8;
+      color: #2a2016;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(245,240,232,0.93);
+      backdrop-filter: blur(10px);
+      border-bottom: 0.5px solid rgba(80,60,20,0.15);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px; font-weight: 600; letter-spacing: 3px; color: #3d2b0e;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-size: 20px; letter-spacing: 1.5px; color: #5a4020;
+      text-decoration: none; transition: color .2s;
+    }
+    .nav-links a:hover { color: #b87333; }
+    .nav-cta {
+      font-size: 11px; letter-spacing: 2px; padding: 9px 22px;
+      background: #3d2b0e; color: #f5f0e8; border: none; cursor: pointer;
+      font-family: 'Noto Serif TC', serif;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: #b87333; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 48px 80px;
+      background: radial-gradient(ellipse at 60% 40%, #e8d5b0 0%, #f5f0e8 70%);
+      position: relative; overflow: hidden;
+    }
+    .hero-bg-text {
+      position: absolute;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 260px; font-weight: 300;
+      color: rgba(80,50,10,0.055);
+      letter-spacing: -10px; user-select: none; white-space: nowrap;
+      top: 50%; transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .hero-subtitle {
+      font-size: 11px; letter-spacing: 5px; color: #b87333;
+      margin-bottom: 22px;
+      animation: fadeUp .8s ease both;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 9vw, 96px); font-weight: 300; line-height: 1.1;
+      color: #2a1a06; margin-bottom: 26px;
+      animation: fadeUp .8s .15s ease both;
+    }
+    .hero-title em { font-style: italic; color: #b87333; }
+    .hero-desc {
+      font-size: 14px; line-height: 2; color: #5a4020;
+      max-width: 480px; margin-bottom: 44px; font-weight: 300;
+      animation: fadeUp .8s .3s ease both;
+    }
+    .hero-btns {
+      display: flex; gap: 16px;
+      animation: fadeUp .8s .45s ease both;
+    }
+    .btn-primary {
+      padding: 14px 40px; background: #3d2b0e; color: #f5f0e8;
+      font-size: 11px; letter-spacing: 2.5px; border: none; cursor: pointer;
+      font-family: 'Noto Serif TC', serif;
+      transition: background .2s, transform .1s;
+    }
+    .btn-primary:hover { background: #b87333; transform: translateY(-2px); }
+    .btn-outline {
+      padding: 14px 40px; background: transparent; color: #3d2b0e;
+      font-size: 11px; letter-spacing: 2.5px;
+      border: 1px solid #3d2b0e; cursor: pointer;
+      font-family: 'Noto Serif TC', serif;
+      transition: background .2s, color .2s;
+    }
+    .btn-outline:hover { background: #3d2b0e; color: #f5f0e8; }
+    .scroll-hint {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      font-size: 10px; letter-spacing: 3px; color: #8a6840;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      animation: pulse 2.5s infinite;
+    }
+    .scroll-arrow { width: 1px; height: 44px; background: linear-gradient(#b87333, transparent); }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap { overflow: hidden; background: #b87333; padding: 16px 0; }
+    .marquee {
+      display: flex; gap: 60px; white-space: nowrap;
+      animation: marquee 22s linear infinite;
+    }
+    .marquee-item {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px; font-weight: 300; letter-spacing: 4px; color: #f5f0e8;
+      flex-shrink: 0;
+    }
+    .marquee-dot { color: rgba(255,255,255,0.35); }
+
+    /* ── ABOUT ── */
+    .about { background: #2a1a06; padding: 100px 48px; }
+    .about-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center; max-width: 1100px; margin: 0 auto;
+    }
+    .about .section-tag { color: #b87333; }
+    .about .section-title { color: #f5f0e8; }
+    .about .section-body { color: #c8b090; }
+    .about .btn-outline { border-color: #b87333; color: #b87333; margin-top: 28px; }
+    .about .btn-outline:hover { background: #b87333; color: #2a1a06; }
+
+    .photo-mosaic {
+      display: grid; grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto; gap: 10px;
+    }
+    .photo-box {
+      background: #3d2b0e;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 10px;
+      color: #b87333; overflow: hidden;
+    }
+    .photo-box:first-child { grid-column: 1 / 3; height: 210px; }
+    .photo-box:nth-child(2), .photo-box:nth-child(3) { height: 140px; }
+    .photo-icon { font-size: 32px; opacity: 0.45; }
+    .photo-label { font-size: 10px; letter-spacing: 2px; color: #b87333; }
+
+    /* ── SECTION COMMON ── */
+    .section-tag { font-size: 10px; letter-spacing: 5px; color: #b87333; display: block; margin-bottom: 12px; }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(34px, 5vw, 58px); font-weight: 300; line-height: 1.15;
+      color: #2a1a06; margin-bottom: 20px;
+    }
+    .section-body { font-size: 14px; line-height: 2; color: #5a4020; max-width: 560px; font-weight: 300; }
+
+    /* ── FEATURES ── */
+    .features { background: #f5f0e8; padding: 100px 48px; }
+    .features-inner { max-width: 1100px; margin: 0 auto; }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 40px; margin-top: 60px;
+    }
+    .feature-card { border-top: 1px solid #d4b896; padding-top: 28px; }
+    .feature-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px; font-weight: 300; color: #d4b896; line-height: 1; margin-bottom: 18px;
+    }
+    .feature-title { font-size: 15px; font-weight: 400; color: #2a1a06; margin-bottom: 12px; letter-spacing: 1px; }
+    .feature-desc { font-size: 13px; color: #7a6040; line-height: 1.9; font-weight: 300; }
+
+    /* ── NEWS ── */
+    .news { background: #ede6d9; padding: 100px 48px; }
+    .news-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start; }
+    .news-list { margin-top: 40px; display: flex; flex-direction: column; }
+    .news-item {
+      padding: 24px 0; border-bottom: 0.5px solid #c8a878;
+      display: flex; gap: 24px; align-items: flex-start;
+      cursor: pointer; transition: padding-left .2s;
+    }
+    .news-item:hover { padding-left: 10px; }
+    .news-date { font-size: 11px; color: #b87333; letter-spacing: 1px; min-width: 64px; margin-top: 3px; }
+    .news-item-title { font-size: 14px; color: #2a1a06; line-height: 1.7; }
+
+    /* ── FRANCHISE ── */
+    .franchise { background: #3d2b0e; padding: 100px 48px; text-align: center; }
+    .franchise .section-tag { justify-content: center; color: #b87333; }
+    .franchise .section-title { color: #f5f0e8; max-width: 600px; margin: 0 auto 20px; }
+    .franchise .section-body { color: #c8b090; margin: 0 auto 40px; text-align: center; }
+    .franchise-stats {
+      display: flex; gap: 60px; justify-content: center; margin-bottom: 48px;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 56px; font-weight: 300; color: #b87333; line-height: 1;
+    }
+    .stat-label { font-size: 11px; letter-spacing: 2px; color: #8a7050; margin-top: 8px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1a1008; color: #c8b090;
+      padding: 60px 48px 40px;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 48px;
+      padding-bottom: 48px; border-bottom: 0.5px solid #3d2b0e;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px; font-weight: 300; color: #f5f0e8; margin-bottom: 8px;
+    }
+    .footer-tagline { font-size: 11px; letter-spacing: 3px; color: #b87333; margin-bottom: 20px; }
+    .footer-links { display: flex; flex-direction: column; gap: 12px; }
+    .footer-links h4 { font-size: 11px; letter-spacing: 3px; color: #b87333; margin-bottom: 8px; }
+    .footer-links a {
+      font-size: 12px; color: #7a6040; text-decoration: none; letter-spacing: 1px;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: #b87333; }
+    .social-row { display: flex; gap: 12px; margin-top: 4px; }
+    .social-btn {
+      width: 38px; height: 38px; border: 0.5px solid #4a3020;
+      display: flex; align-items: center; justify-content: center;
+      color: #7a6040; font-size: 11px; cursor: pointer; letter-spacing: 0;
+      transition: border-color .2s, color .2s;
+    }
+    .social-btn:hover { border-color: #b87333; color: #b87333; }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 28px; font-size: 11px; color: #4a3020; letter-spacing: 1px;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 100px 24px 60px; }
+      .hero-bg-text { font-size: 120px; }
+      .about-inner, .news-inner, .footer-top { grid-template-columns: 1fr; gap: 48px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .franchise-stats { gap: 32px; }
+      section, .about, .features, .news, .franchise { padding: 72px 24px; }
+      footer { padding: 48px 24px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!--*************************** NAV 導航連結區域****************************************-->
+  <nav>
+    <a class="nav-logo" href="#">烏吉 WOOJI</a>
+    <ul class="nav-links">
+      <li><a href="#">品牌故事</a></li>
+      <li><a href="#">飲品菜單</a></li>
+      <li><a href="#">台灣據點</a></li>      
+      <li><a href="#">最新消息</a></li>      
+    </ul>
+    <ul class="text-end py-2">
+        <a href="https://www.facebook.com/people/%E7%83%8F%E5%90%89%E8%8C%B6%E9%A3%B2%E5%B0%8F%E6%9D%B1%E5%85%89%E6%98%8E%E7%B8%BD%E5%BA%97/61557050424722/" class="text-decoration-none">
+            <i class="fa-brands fa-square-facebook fa-beat fa-2x" style="color: rgb(14, 94, 236);"></i>
+        </a>
+        <a href="#" class="text-decoration-none">
+            <i class="fa-brands fa-line fa-2x fa-beat" style="color:rgb(63, 155, 55)"></i>
+        </a>
+        <a href="https://www.instagram.com/wooji_tea/" class="text-decoration-none">
+            <i class="fa-brands fa-square-instagram fa-2x fa-beat" style="color: rgb(231, 38, 12);"></i>
+        </a>
+    </ul>
+    <a href="https://www.ubereats.com/tw/store/%E7%83%8F%E5%90%89%E8%8C%B6%E9%A3%B2-%E5%B0%8F%E6%9D%B1%E5%85%89%E6%98%8E%E7%B8%BD%E5%BA%97/vNLFB7g8V_yEnSzqBQ1Z7g?srsltid=AfmBOooav_AQU1Azag3QOsE7OJdmctDBr_k9Wab-p-LnkNHmqVjhFwN0">
+      <button class="nav-cta">線上點餐</button>
+    </a>
+    
+  </nav>
+
+  <!-- HERO -->
+  <section id="s01" class="hero">
+    <div class="hero-bg-text">烏吉</div>
+    <span class="hero-subtitle">SINCE 2015 · 古早味手搖飲</span>
+    <h1 class="hero-title">小人物<br><em>大生活</em></h1>
+    <p class="hero-desc">烏吉靠的是大眾口傳與口碑，穩固持續的發展茁壯。<br>用心找尋在地職人，製成優質飲品服務消費者。</p>
+    <div class="hero-btns">
+      <button class="btn-primary">探索菜單</button>
+      <button class="btn-outline">加盟洽詢</button>
+    </div>
+    <div class="scroll-hint">
+      <span>SCROLL</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee">
+      <span class="marquee-item">好評口碑</span><span class="marquee-dot">&nbsp;·&nbsp;</span>
+      <span class="marquee-item">台灣匠心職人</span><span class="marquee-dot">&nbsp;·&nbsp;</span>
+      <span class="marquee-item">嚴選在地小農</span><span class="marquee-dot">&nbsp;·&nbsp;</span>
+      <span class="marquee-item">Dream Big, Live Fresh</span><span class="marquee-dot">&nbsp;·&nbsp;</span>
+      <span class="marquee-item">好評口碑</span><span class="marquee-dot">&nbsp;·&nbsp;</span>
+      <span class="marquee-item">台灣匠心職人</span><span class="marquee-dot">&nbsp;·&nbsp;</span>
+      <span class="marquee-item">嚴選在地小農</span><span class="marquee-dot">&nbsp;·&nbsp;</span>
+      <span class="marquee-item">Dream Big, Live Fresh</span><span class="marquee-dot">&nbsp;·&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="about-inner">
+      <div>
+        <span class="section-tag">BRAND STORY</span>
+        <h2 class="section-title">台灣匠心<br>職人精神</h2>
+        <p class="section-body">烏吉的用心與核心競爭能力不只在技術研發面，另一個著重點專注於持續的找尋在地許多默默用心耕耘製作原物料的職人們。這些優質的原物料經過烏吉反覆的測試與品鑑後，最終製成優質飲品服務給消費者。</p>
+        <button class="btn-outline">關於我們</button>
+      </div>
+      <div class="photo-mosaic">
+        <div class="photo-box">
+          <div class="photo-icon">🍵</div>
+          <span class="photo-label">西門旗艦店</span>
+        </div>
+        <div class="photo-box">
+          <div class="photo-icon">🌿</div>
+          <span class="photo-label">南西店</span>
+        </div>
+        <div class="photo-box">
+          <div class="photo-icon">☕</div>
+          <span class="photo-label">內湖店</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="features-inner">
+      <span class="section-tag">WHY GUIJI</span>
+      <h2 class="section-title">烏吉的堅持</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-num">01</div>
+          <div class="feature-title">嚴選在地小農</div>
+          <div class="feature-desc">與台灣當地具有匠心的職人們合作，確保每一杯飲品的原料品質都達到最高標準，讓消費者感受到對於產品用料的用心與認可。</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">02</div>
+          <div class="feature-title">口碑相傳成長</div>
+          <div class="feature-desc">自成立來，烏吉沒有做過多的行銷廣宣，靠的是大眾口傳與口碑穩固持續的發展茁壯。烏吉知道並懂得感恩與回饋。</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">03</div>
+          <div class="feature-title">最佳加盟夥伴</div>
+          <div class="feature-desc">烏吉是最佳的創業夥伴，提供完整的加盟支援系統，讓小人物也能活出大生活，成為你最佳的創業夥伴！</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section class="news">
+    <div class="news-inner">
+      <div>
+        <span class="section-tag">LATEST NEWS</span>
+        <h2 class="section-title">最新消息</h2>
+        <p class="section-body">掌握烏吉最新動態，與我們一起展開屬於自己的生活冒險。</p>
+      </div>
+      <div class="news-list">
+        <div class="news-item">
+          <span class="news-date">2026.02</span>
+          <div class="news-item-title">烏吉攜手Labubu推出全台獨家聯名，2月起限量登場跨界潮玩！</div>
+        </div>
+        <div class="news-item">
+          <span class="news-date">2025.12</span>
+          <div class="news-item-title">烏吉年終感恩回饋，精選飲品限時優惠活動正式開跑</div>
+        </div>
+        <div class="news-item">
+          <span class="news-date">2025.10</span>
+          <div class="news-item-title">新據點開幕！烏吉持續擴展海外市場，進駐東南亞三大城市</div>
+        </div>
+        <div class="news-item">
+          <span class="news-date">2025.08</span>
+          <div class="news-item-title">秋季新品上市，嚴選台灣高山茶搭配古法製糖，限定風味登場</div>
+        </div>
+        <div class="news-item">
+          <span class="news-date">2025.06</span>
+          <div class="news-item-title">烏吉會員制度全面升級，享有專屬優惠與優先購買權利</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRANCHISE -->
+  <section class="franchise">
+    <span class="section-tag" style="display:block;text-align:center;">JOIN US</span>
+    <h2 class="section-title">成為烏吉加盟夥伴</h2>
+    <p class="section-body">小人物也能活出大生活。烏吉提供完整的品牌資源、教育訓練與持續的經營支持，讓你無後顧之憂地踏上創業之路。</p>
+    <div class="franchise-stats">
+      <div class="stat-item">
+        <div class="stat-num">200<span style="font-size:32px;">+</span></div>
+        <div class="stat-label">全球據點</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">10<span style="font-size:32px;">+</span></div>
+        <div class="stat-label">海外國家</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">9</div>
+        <div class="stat-label">品牌年資</div>
+      </div>
+    </div>
+    <button class="btn-primary" style="font-size:12px;padding:16px 48px;letter-spacing:3px;">我要加盟</button>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">烏吉茶飲</div>
+        <div class="footer-tagline">DREAM BIG · LIVE FRESH</div>
+        <div class="social-row">
+          <div class="social-btn">FB</div>
+          <div class="social-btn">IG</div>
+          <div class="social-btn">YT</div>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>NAVIGATE</h4>
+        <a href="#">品牌故事 Brand Story</a>
+        <a href="#">飲品菜單 Drinks Menu</a>
+        <a href="#">海外據點 Guiji Overseas</a>
+        <a href="#">台灣據點 Guiji in Taiwan</a>
+        <a href="#">會員制度 Membership</a>
+        <a href="#">最新消息 News</a>
+      </div>
+      <div class="footer-links">
+        <h4>CONTACT</h4>
+        <a href="#">聯絡我們 Contact Us</a>
+        <a href="#">加盟洽詢 Franchise</a>
+        <a href="#">線上點餐 Order Online</a>
+        <a href="#">隱私政策 Privacy Policy</a>
+        <a href="#">服務條款 Terms</a>
+        <br>
+        <button class="btn-primary" style="margin-top:8px;font-size:10px;letter-spacing:2px;padding:10px 24px;">我要加盟 →</button>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 烏吉茶飲 Guiji · 此網站為烏吉茶飲全球總部唯一官網，仿冒抄襲必究其法律責任</span>
+      <span>Web Design inspired by Guiji Group</span>
+    </div>
+  </footer>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-4.0.0.min.js"></script>
+    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>AOS.init();</script>
+</body>
+</html>
